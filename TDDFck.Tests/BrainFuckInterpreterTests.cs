@@ -60,4 +60,13 @@ public class BrainFuckInterpreterTests
         _sut.Memory.First().Should().Be(251); // 0 - 5 = 251
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
+    
+    [Fact]
+    public void GivenMultipleValueOperators_SetValueAtMemoryPointerCorrectly()
+    {
+        _sut.Interpret("+++++-----+");
+
+        _sut.Memory.First().Should().Be(1); // 5 - 5 + 1 = 1
+        _sut.Memory.Skip(1).ShouldBeEmpty();
+    }
 }
