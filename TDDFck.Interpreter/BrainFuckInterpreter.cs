@@ -5,7 +5,7 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
     private byte[] _memory;
     private uint _memoryPointer;
     private int _programPointer;
-    private int _jumpStartPointer;
+    private Stack<int> _jumpStack = new ();
     
     private readonly ICharacterInput _input;
     private readonly ICharacterOutput _output;
@@ -44,11 +44,12 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                     _output.OutputChar((char) _memory[_memoryPointer]);
                     break;
                 case '[':
-                    _jumpStartPointer = _programPointer;
+                    _jumpStack.Push(_programPointer - 1);
                     break;
                 case ']':
+                    var pointer = _jumpStack.Pop();
                     if (_memory[_memoryPointer] != 0)
-                        _programPointer = _jumpStartPointer;
+                        _programPointer = pointer;
                     break;
             }
         }

@@ -164,4 +164,15 @@ public class BrainFuckInterpreterTests
         
         _sut.Memory.ShouldBeEmpty();
     }
+    
+    [Fact]
+    public void GivenNestedJumpOperators_LoopsUntilAllCellsAreZeroAgain()
+    {
+        _testInput.SetInput("abcd");
+        
+        _sut.Interpret(",>,>,>,[.[-]<]");
+        
+        _sut.Memory.ShouldBeEmpty();
+        _testOutput.Output.Should().Be("dcba");
+    }
 }
