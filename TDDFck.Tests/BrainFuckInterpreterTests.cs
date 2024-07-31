@@ -26,7 +26,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.ShouldBeEmpty();
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenIncrementValueOperator_IncrementsValueAtMemoryPointer()
     {
         _sut.Interpret("+");
@@ -35,7 +35,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleIncrementValueOperators_IncrementsValueAtMemoryPointerMultipleTimes()
     {
         _sut.Interpret("+++++");
@@ -44,7 +44,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenDecrementValueOperator_DecrementsValueAtMemoryPointer()
     {
         _sut.Interpret("-");
@@ -53,7 +53,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleDecrementValueOperators_DecrementsValueAtMemoryPointerMultipleTimes()
     {
         _sut.Interpret("-----");
@@ -62,7 +62,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleValueOperators_SetValueAtMemoryPointerCorrectly()
     {
         _sut.Interpret("+++++-----+");
@@ -71,7 +71,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenIncreaseMemoryPointerOperator_MovesMemoryPointerCorrectly()
     {
         _sut.Interpret("+>+>+");
@@ -80,7 +80,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(3).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenDecreaseMemoryPointerOperator_MovesMemoryPointerCorrectly()
     {
         _sut.Interpret(">>>+<<++");
@@ -89,7 +89,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(4).ShouldBeEmpty();
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMemoryPointerDecreasesBelowZero_WrapsAroundToLastCell()
     {
         _sut.Interpret("<+");
@@ -98,7 +98,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.SkipLast(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMemoryPointerIncreasesPastLastCell_WrapsAroundToFirstCell()
     {
         _sut.Interpret(new string('>', (int)MemorySize) + "+");
@@ -107,7 +107,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenInputOperator_ReadsFromInputAndWritesAsciiValueToCurrentCell()
     {
         _testInput.SetInput("a");
@@ -118,7 +118,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleInputOperators_ReadsFromInputAndWritesAsciiValuesToMemory()
     {
         _testInput.SetInput("abc");
@@ -129,7 +129,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(3).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenOutputOperator_ReadsFromCellAndWritesAsciiValueToOutput()
     {
         _testInput.SetInput("a");
@@ -139,7 +139,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().Be("a");
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleOutputOperators_ReadsFromCellAndWritesAllAsciiValuesToOutput()
     {
         _testInput.SetInput("abcABC");
@@ -149,7 +149,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().Be("abcABC");
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenJumpOperators_LoopsUntilCellIsZero()
     {
         _sut.Interpret("++++++++++[--]");
@@ -157,7 +157,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenMultipleJumpOperators_LoopsUntilBothCellsAreZeroAgain()
     {
         _sut.Interpret("+++++[-]>+++++[-]");
@@ -165,7 +165,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenNestedJumpOperators_LoopsUntilAllCellsAreZeroAgain()
     {
         _testInput.SetInput("abcd");
@@ -176,7 +176,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().Be("dcba");
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenJumpOperatorHitWhenCellAlreadyAtZero_SkipsRunningTheLoop()
     {
         _sut.Interpret("+++++>[+++>+++>+++]+");
@@ -186,7 +186,7 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Skip(2).ShouldBeEmpty();
     }
     
-    [Fact]
+    [Fact(Skip = "Unskip this when all tests above pass")]
     public void GivenNonOperatorCharacter_IgnoresCharacter()
     {
         _sut.Interpret(@" !#$%&'()*/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ");
@@ -200,7 +200,7 @@ public class BrainFuckInterpreterTests
      * Wanna find out? The tests below are some more complex brainfuck programs
      */
 
-    [Fact]
+    [Fact(Skip = "Unskip this when you are done building the interpreter")]
     public void GivenHelloWorld_PrintsHelloWorld()
     {
         _sut.Interpret("+++++++++++[>++++++>+++++++++>++++++++>++++>+++>+<<<<<<-]>++++++.>++.+++++++..+++.>>.>-.<<-.<.+++.------.--------.>>>+.");
@@ -208,7 +208,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().BeEquivalentTo("Hello, World!");
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when you are done building the interpreter")]
     public void GivenShortHelloWorld_PrintsHelloWorld()
     {
         _sut.Interpret("+[-->-[>>+>-----<<]<--<---]>-.>>>+.>>..+++[.>]<<<<.+++.------.<<-.>>>>+.");
@@ -216,7 +216,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().BeEquivalentTo("Hello, World!");
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when you are done building the interpreter")]
     public void GivenCellSizeCalculator_Returns8BitCells()
     {
         var code = @"
@@ -248,7 +248,7 @@ public class BrainFuckInterpreterTests
         _testOutput.Output.Should().BeEquivalentTo("8 bit cells\n");
     }
 
-    [Fact]
+    [Fact(Skip = "Unskip this when you are done building the interpreter")]
     public void GivenBrainfuckInterpreterInBrainfuck_CanRunASimpleProgram()
     {
         var code = @"
