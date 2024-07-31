@@ -69,4 +69,15 @@ public class BrainFuckInterpreterTests
         _sut.Memory.First().Should().Be(1); // 5 - 5 + 1 = 1
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
+    
+    [Fact]
+    public void GivenIncreaseMemoryPointerOperator_MovesMemoryPointerCorrectly()
+    {
+        _sut.Interpret("+>+>+");
+
+        _sut.Memory.ElementAt(0).Should().Be(1);
+        _sut.Memory.ElementAt(1).Should().Be(1);
+        _sut.Memory.ElementAt(2).Should().Be(1);
+        _sut.Memory.Skip(3).ShouldBeEmpty();
+    }
 }
