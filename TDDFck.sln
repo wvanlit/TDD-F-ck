@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDFck.Interpreter", "TDDFck.Interpreter\TDDFck.Interpreter.csproj", "{FBE1E0C3-167A-4666-B5FD-AE9F9A82B181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDFck.Tests", "TDDFck.Tests\TDDFck.Tests.csproj", "{90081895-787F-486C-943C-2C695CFFFC70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBE1E0C3-167A-4666-B5FD-AE9F9A82B181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBE1E0C3-167A-4666-B5FD-AE9F9A82B181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBE1E0C3-167A-4666-B5FD-AE9F9A82B181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBE1E0C3-167A-4666-B5FD-AE9F9A82B181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90081895-787F-486C-943C-2C695CFFFC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90081895-787F-486C-943C-2C695CFFFC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90081895-787F-486C-943C-2C695CFFFC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90081895-787F-486C-943C-2C695CFFFC70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
