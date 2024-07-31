@@ -148,4 +148,13 @@ public class BrainFuckInterpreterTests
         
         _testOutput.Output.Should().Be("abcABC");
     }
+    
+    [Fact]
+    public void GivenJumpOperators_LoopsUntilCellIsZero()
+    {
+        _sut.Interpret("++++++++++[--]");
+        
+        _sut.Memory.First().Should().Be(0);
+        _sut.Memory.Skip(1).ShouldBeEmpty();
+    }
 }

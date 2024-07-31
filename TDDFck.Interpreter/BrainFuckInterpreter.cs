@@ -4,6 +4,7 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
 {
     private byte[] _memory;
     private uint _memoryPointer;
+    private int _programPointer;
     
     private readonly ICharacterInput _input;
     private readonly ICharacterOutput _output;
@@ -19,9 +20,9 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
 
     public void Interpret(string code)
     {
-        foreach (var c in code)
+        while (_programPointer < code.Length)
         {
-            switch (c)
+            switch (code[_programPointer++])
             {
                 case '+':
                     _memory[_memoryPointer] += 1;
@@ -40,6 +41,12 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                     break;
                 case '.':
                     _output.OutputChar((char) _memory[_memoryPointer]);
+                    break;
+                case '[':
+                    break;
+                case ']':
+                    if (_memory[_memoryPointer] != 0)
+                        _programPointer = code.IndexOf('[');
                     break;
             }
         }
