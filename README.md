@@ -4,7 +4,7 @@
 
 ## Getting Ready
 
-1. Clone this repository
+1. Clone this repository or create a new repo using the template button
 2. Read the [TDD primer](./tdd-primer.md)
 3. Read the [brainfuck primer](./brainfuck-primer.md)
 4. Open the solution in your text editor/IDE of choice
