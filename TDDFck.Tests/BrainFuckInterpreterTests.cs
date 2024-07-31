@@ -90,11 +90,20 @@ public class BrainFuckInterpreterTests
     }
 
     [Fact]
-    public void GivenMemoryPointerDecreasesBelowZero_WrapsAround()
+    public void GivenMemoryPointerDecreasesBelowZero_WrapsAroundToLastCell()
     {
         _sut.Interpret("<+");
 
         _sut.Memory.Last().Should().Be(1);
         _sut.Memory.SkipLast(1).ShouldBeEmpty();
+    }
+    
+    [Fact]
+    public void GivenMemoryPointerIncreasesPastLastCell_WrapsAroundToFirstCell()
+    {
+        _sut.Interpret(new string('>', (int)MemorySize) + "+");
+
+        _sut.Memory.First().Should().Be(1);
+        _sut.Memory.Skip(1).ShouldBeEmpty();
     }
 }

@@ -30,11 +30,10 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                     _memory[_memoryPointer] -= 1;
                     break;
                 case '>':
-                    _memoryPointer += 1;
+                    _memoryPointer = _memoryPointer + 1 < Memory.Count ? _memoryPointer + 1 : 0;
                     break;
                 case '<':
                     _memoryPointer = Math.Min(_memoryPointer - 1, (uint)Memory.Count - 1);
-                    
                     break;
             }
         }
