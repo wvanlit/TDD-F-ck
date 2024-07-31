@@ -16,8 +16,26 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
         _output = output;
     }
 
+    /// <summary>
+    /// Based on the specification from http://brainfuck.org/brainfuck.html
+    /// </summary>
+    /// <remarks>
+    /// This interpreter makes the following assumptions:
+    /// <list type="bullet">
+    ///     <item> Cells are 8 bits / a byte long </item>
+    ///     <item> Cells can under/over-flow (0 - 255) </item>
+    ///     <item> The pointer wraps around to the beginning/end of the memory if it goes out of bounds </item>
+    /// </list>
+    /// This interpreter does not handle:
+    /// <list type="bullet">
+    ///     <item> Unmatched '[' or ']' in the program </item>
+    ///     <item> Dynamic memory length </item>
+    ///     <item> Stopping EOF from input </item>
+    /// </list>
+    /// </remarks>
     public void Interpret(string code)
     {
+        // TODO: Implement this - You should only need to touch this file (and unskip tests)
         throw new NotImplementedException();
     }
 }
