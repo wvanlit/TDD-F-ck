@@ -23,7 +23,7 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
     /// This interpreter makes the following assumptions:
     /// <list type="bullet">
     ///     <item> Cells are 8 bits / a byte long </item>
-    ///     <item> Cells can under/over-flow (0 - 255) </item>
+    ///     <item> Cells can under/over-flow (0 - 1 becomes 255, 255 + 1 becomes 0) </item>
     ///     <item> The pointer wraps around to the beginning/end of the memory if it goes out of bounds </item>
     /// </list>
     /// This interpreter does not handle:
