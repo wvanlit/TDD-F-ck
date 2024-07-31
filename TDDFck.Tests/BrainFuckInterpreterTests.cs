@@ -175,6 +175,16 @@ public class BrainFuckInterpreterTests
         _sut.Memory.ShouldBeEmpty();
         _testOutput.Output.Should().Be("dcba");
     }
+
+    [Fact]
+    public void GivenJumpOperatorHitWhenCellAlreadyAtZero_SkipsRunningTheLoop()
+    {
+        _sut.Interpret("+++++>[+++>+++>+++]+");
+
+        _sut.Memory.ElementAt(0).Should().Be(5);
+        _sut.Memory.ElementAt(1).Should().Be(1);
+        _sut.Memory.Skip(2).ShouldBeEmpty();
+    }
     
     [Fact]
     public void GivenNonOperatorCharacter_IgnoresCharacter()

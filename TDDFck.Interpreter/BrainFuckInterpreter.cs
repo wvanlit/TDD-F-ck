@@ -5,8 +5,8 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
     private byte[] _memory;
     private uint _memoryPointer;
     private int _programPointer;
-    private Stack<int> _jumpStack = new ();
-    
+    private Stack<int> _jumpStack = new();
+
     private readonly ICharacterInput _input;
     private readonly ICharacterOutput _output;
 
@@ -41,10 +41,27 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                     _memory[_memoryPointer] = (byte)_input.GetNextChar();
                     break;
                 case '.':
-                    _output.OutputChar((char) _memory[_memoryPointer]);
+                    _output.OutputChar((char)_memory[_memoryPointer]);
                     break;
                 case '[':
-                    _jumpStack.Push(_programPointer - 1);
+                    if (_memory[_memoryPointer] == 0)
+                    {
+                        // Find the matching closing bracket
+                        var openBracketCount = 1;
+                        while (openBracketCount > 0)
+                        {
+                            var op = code[_programPointer++];
+                            if (op == '[') 
+                                openBracketCount++;
+                            else if (op == ']') 
+                                openBracketCount--;
+                        }
+                    }
+                    else
+                    {
+                        _jumpStack.Push(_programPointer - 1);
+                    }
+
                     break;
                 case ']':
                     var pointer = _jumpStack.Pop();
