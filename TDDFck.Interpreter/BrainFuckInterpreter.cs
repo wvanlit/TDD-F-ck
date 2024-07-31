@@ -35,6 +35,9 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                 case '<':
                     _memoryPointer = Math.Min(_memoryPointer - 1, (uint)Memory.Count - 1);
                     break;
+                case ',':
+                    _memory[_memoryPointer] = (byte)_input.GetNextChar();
+                    break;
             }
         }
     }
