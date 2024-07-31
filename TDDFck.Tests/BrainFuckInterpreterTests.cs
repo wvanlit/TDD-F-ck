@@ -189,4 +189,20 @@ public class BrainFuckInterpreterTests
      *
      * Wanna find out? The tests below are some more complex brainfuck programs
      */
+
+    [Fact]
+    public void GivenHelloWorld_PrintsHelloWorld()
+    {
+        _sut.Interpret("+++++++++++[>++++++>+++++++++>++++++++>++++>+++>+<<<<<<-]>++++++.>++.+++++++..+++.>>.>-.<<-.<.+++.------.--------.>>>+.");
+
+        _testOutput.Output.Should().BeEquivalentTo("Hello, World!");
+    }
+
+    [Fact]
+    public void GivenShortHelloWorld_PrintsHelloWorld()
+    {
+        _sut.Interpret("--<-<<+[+[<+>--->->->-<<<]>]<<--.<++++++.<<-..<<.<+.>>.>>.<<<.+++.>>.>>-.<<<+.");
+
+        _testOutput.Output.Should().BeEquivalentTo("Hello, World!");
+    }
 }
