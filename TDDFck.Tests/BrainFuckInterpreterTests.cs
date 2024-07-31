@@ -128,4 +128,14 @@ public class BrainFuckInterpreterTests
         _sut.Memory.Take(3).ShouldBe("abc");
         _sut.Memory.Skip(3).ShouldBeEmpty();
     }
+    
+    [Fact]
+    public void GivenOutputOperator_ReadsFromCellAndWritesAsciiValueToOutput()
+    {
+        _testInput.SetInput("a");
+        
+        _sut.Interpret(",.");
+        
+        _testOutput.Output.Should().Be("a");
+    }
 }

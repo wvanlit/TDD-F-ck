@@ -38,6 +38,9 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                 case ',':
                     _memory[_memoryPointer] = (byte)_input.GetNextChar();
                     break;
+                case '.':
+                    _output.OutputChar((char) _memory[_memoryPointer]);
+                    break;
             }
         }
     }
