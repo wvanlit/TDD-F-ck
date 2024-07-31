@@ -75,9 +75,16 @@ public class BrainFuckInterpreterTests
     {
         _sut.Interpret("+>+>+");
 
-        _sut.Memory.ElementAt(0).Should().Be(1);
-        _sut.Memory.ElementAt(1).Should().Be(1);
-        _sut.Memory.ElementAt(2).Should().Be(1);
+        _sut.Memory.Take(3).ShouldBe(1, 1, 1);
         _sut.Memory.Skip(3).ShouldBeEmpty();
+    }
+    
+    [Fact]
+    public void GivenDecreaseMemoryPointerOperator_MovesMemoryPointerCorrectly()
+    {
+        _sut.Interpret(">>>+<<++");
+        
+        _sut.Memory.Take(4).ShouldBe(0, 2, 0, 1);
+        _sut.Memory.Skip(4).ShouldBeEmpty();
     }
 }

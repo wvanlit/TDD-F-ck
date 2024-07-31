@@ -32,6 +32,9 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
                 case '>':
                     _memoryPointer += 1;
                     break;
+                case '<':
+                    _memoryPointer -= 1;
+                    break;
             }
         }
     }

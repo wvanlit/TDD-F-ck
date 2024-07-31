@@ -6,4 +6,9 @@ public static class TestExtensions
     {
         memory.Should().AllSatisfy(m => m.Should().Be(0));
     }
+    
+    public static void ShouldBe(this IEnumerable<byte> memory, params byte[] values)
+    {
+        memory.Should().BeEquivalentTo(values);
+    }
 }
