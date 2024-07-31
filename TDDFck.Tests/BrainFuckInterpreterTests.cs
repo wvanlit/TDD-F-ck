@@ -2,13 +2,14 @@ namespace TDDFck.Tests;
 
 public class BrainFuckInterpreterTests
 {
+    private const uint MemorySize = 256;
     private readonly BrainFuckInterpreter _sut;
     private readonly TestCharacterInput _testInput = new ();
     private readonly TestCharacterOutput _testOutput = new ();
 
     public BrainFuckInterpreterTests()
     {
-        _sut = new BrainFuckInterpreter(1024, _testInput, _testOutput);
+        _sut = new BrainFuckInterpreter(MemorySize, _testInput, _testOutput);
     }
     
     [Fact]
@@ -86,5 +87,14 @@ public class BrainFuckInterpreterTests
         
         _sut.Memory.Take(4).ShouldBe(0, 2, 0, 1);
         _sut.Memory.Skip(4).ShouldBeEmpty();
+    }
+
+    [Fact]
+    public void GivenMemoryPointerDecreasesBelowZero_WrapsAround()
+    {
+        _sut.Interpret("<+");
+
+        _sut.Memory.Last().Should().Be(1);
+        _sut.Memory.SkipLast(1).ShouldBeEmpty();
     }
 }
