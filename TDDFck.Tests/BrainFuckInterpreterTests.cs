@@ -247,4 +247,23 @@ public class BrainFuckInterpreterTests
         
         _testOutput.Output.Should().BeEquivalentTo("8 bit cells\n");
     }
+
+    [Fact]
+    public void GivenBrainfuckInterpreterInBrainfuck_CanRunASimpleProgram()
+    {
+        var code = @"
+        >>>+[[-]>>[-]++>+>+++++++[<++++>>++<-]++>>+>+>+++++[>++>++++++<<-]+>>>,<++[[>[
+        ->>]<[>>]<<-]<[<]<+>>[>]>[<+>-[[<+>-]>]<[[[-]<]++<-[<+++++++++>[<->-]>>]>>]]<<
+        ]<]<[[<]>[[>]>>[>>]+[<<]<[<]<+>>-]>[>]+[->>]<<<<[[<<]<[<]+<<[+>+<<-[>-->+<<-[>
+        +<[>>+<<-]]]>[<+>-]<]++>>-->[>]>>[>>]]<<[>>+<[[<]<]>[[<<]<[<]+[-<+>>-[<<+>++>-
+        [<->[<<+>>-]]]<[>+<-]>]>[>]>]>[>>]>>]<<[>>+>>+>>]<<[->>>>>>>>]<<[>.>>>>>>>]<<[
+        >->>>>>]<<[>,>>>]<<[>+>]<<[+<<]<]";
+        
+        // Read 3 chars from input and print them on reading 
+        _testInput.SetInput(",.>,.>,.!abc");
+        
+        _sut.Interpret(code);
+
+        _testOutput.Output.Should().Be("abc");
+    }
 }
