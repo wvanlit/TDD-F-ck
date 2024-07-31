@@ -24,4 +24,13 @@ public class BrainFuckInterpreterTests
 
         _sut.Memory.Should().AllSatisfy(m => m.Should().Be(0u));
     }
+
+    [Fact]
+    public void GivenIncrementValueOperator_IncrementsValueAtMemoryPointer()
+    {
+        _sut.Interpret("+");
+
+        _sut.Memory.First().Should().Be(1u);
+        _sut.Memory.Skip(1).Should().AllSatisfy(m => m.Should().Be(0u));
+    }
 }

@@ -1,4 +1,4 @@
-# TTD F*CK
+# TDD F*CK
 
 > A workshop on using Test Driven Development (TDD) to build a brainfuck interpreter.
 
