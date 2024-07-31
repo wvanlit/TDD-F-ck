@@ -138,4 +138,14 @@ public class BrainFuckInterpreterTests
         
         _testOutput.Output.Should().Be("a");
     }
+    
+    [Fact]
+    public void GivenMultipleOutputOperators_ReadsFromCellAndWritesAllAsciiValuesToOutput()
+    {
+        _testInput.SetInput("abcABC");
+        
+        _sut.Interpret(",>,>,>,>,>,><<<<<<.>.>.>.>.>.");
+        
+        _testOutput.Output.Should().Be("abcABC");
+    }
 }
