@@ -7,8 +7,9 @@
 1. Clone this repository
 2. Read the [TDD primer](./tdd-primer.md)
 3. Read the [brainfuck primer](./brainfuck-primer.md)
-4. Open [BrainFuckInterpreter.cs](./TDDFck.Interpreter/BrainFuckInterpreter.cs) and [BrainFuckInterpreterTests.cs](./TDDFck.Tests/BrainFuckInterpreterTests.cs)
-5. Start implementing test case by test case
+4. Open the solution in your text editor/IDE of choice
+5. Open [BrainFuckInterpreter.cs](./TDDFck.Interpreter/BrainFuckInterpreter.cs) and [BrainFuckInterpreterTests.cs](./TDDFck.Tests/BrainFuckInterpreterTests.cs)
+6. Start implementing test case by test case
 
 ## Completed Implementation
 
