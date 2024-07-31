@@ -117,4 +117,15 @@ public class BrainFuckInterpreterTests
         _sut.Memory.First().Should().Be((byte)'a');
         _sut.Memory.Skip(1).ShouldBeEmpty();
     }
+    
+    [Fact]
+    public void GivenMultipleInputOperators_ReadsFromInputAndWritesAsciiValuesToMemory()
+    {
+        _testInput.SetInput("abc");
+        
+        _sut.Interpret(",>,>,");
+        
+        _sut.Memory.Take(3).ShouldBe("abc");
+        _sut.Memory.Skip(3).ShouldBeEmpty();
+    }
 }

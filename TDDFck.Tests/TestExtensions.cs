@@ -11,4 +11,9 @@ public static class TestExtensions
     {
         memory.Should().BeEquivalentTo(values);
     }
+    
+    public static void ShouldBe(this IEnumerable<byte> memory, string s)
+    {
+        memory.Should().BeEquivalentTo(s.Select(v => (byte)v));
+    }
 }
