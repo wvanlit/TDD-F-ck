@@ -175,4 +175,18 @@ public class BrainFuckInterpreterTests
         _sut.Memory.ShouldBeEmpty();
         _testOutput.Output.Should().Be("dcba");
     }
+    
+    [Fact]
+    public void GivenNonOperatorCharacter_IgnoresCharacter()
+    {
+        _sut.Interpret(@" !#$%&'()*/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ");
+        
+        _sut.Memory.ShouldBeEmpty();
+    }
+    
+    /*
+     * Congratulations! You're interpreter should now be 100% functional.
+     *
+     * Wanna find out? The tests below are some more complex brainfuck programs
+     */
 }
