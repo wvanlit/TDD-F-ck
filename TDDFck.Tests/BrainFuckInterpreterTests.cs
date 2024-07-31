@@ -22,7 +22,7 @@ public class BrainFuckInterpreterTests
     {
         _sut.Interpret("");
 
-        _sut.Memory.Should().AllSatisfy(m => m.Should().Be(0u));
+        _sut.Memory.ShouldBeEmpty();
     }
 
     [Fact]
@@ -30,8 +30,8 @@ public class BrainFuckInterpreterTests
     {
         _sut.Interpret("+");
 
-        _sut.Memory.First().Should().Be(1u);
-        _sut.Memory.Skip(1).Should().AllSatisfy(m => m.Should().Be(0u));
+        _sut.Memory.First().Should().Be(1);
+        _sut.Memory.Skip(1).ShouldBeEmpty();
     }
     
     [Fact]
@@ -39,7 +39,16 @@ public class BrainFuckInterpreterTests
     {
         _sut.Interpret("+++++");
 
-        _sut.Memory.First().Should().Be(5u);
-        _sut.Memory.Skip(1).Should().AllSatisfy(m => m.Should().Be(0u));
+        _sut.Memory.First().Should().Be(5);
+        _sut.Memory.Skip(1).ShouldBeEmpty();
+    }
+    
+    [Fact]
+    public void GivenDecrementValueOperator_DecrementsValueAtMemoryPointer()
+    {
+        _sut.Interpret("-");
+
+        _sut.Memory.First().Should().Be(255); // 0 - 1 = 255
+        _sut.Memory.Skip(1).ShouldBeEmpty();
     }
 }

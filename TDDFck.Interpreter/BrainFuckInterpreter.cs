@@ -2,22 +2,23 @@
 
 public class BrainFuckInterpreter : IBrainFuckInterpreter
 {
-    private uint[] _memory;
+    private byte[] _memory;
     
     private readonly ICharacterInput _input;
     private readonly ICharacterOutput _output;
 
-    public IReadOnlyCollection<uint> Memory => _memory;
+    public IReadOnlyCollection<byte> Memory => _memory;
 
     public BrainFuckInterpreter(uint memorySize, ICharacterInput input, ICharacterOutput output)
     {
-        _memory = new uint[memorySize];
+        _memory = new byte[memorySize];
         _input = input;
         _output = output;
     }
 
     public void Interpret(string code)
     {
-        _memory[0] = (uint)code.Count(c => c is '+');
+        _memory[0] += (byte)code.Count(c => c is '+');
+        _memory[0] -= (byte)code.Count(c => c is '-');
     }
 }
