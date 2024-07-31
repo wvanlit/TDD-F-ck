@@ -211,8 +211,40 @@ public class BrainFuckInterpreterTests
     [Fact]
     public void GivenShortHelloWorld_PrintsHelloWorld()
     {
-        _sut.Interpret("--<-<<+[+[<+>--->->->-<<<]>]<<--.<++++++.<<-..<<.<+.>>.>>.<<<.+++.>>.>>-.<<<+.");
+        _sut.Interpret("+[-->-[>>+>-----<<]<--<---]>-.>>>+.>>..+++[.>]<<<<.+++.------.<<-.>>>>+.");
 
         _testOutput.Output.Should().BeEquivalentTo("Hello, World!");
+    }
+
+    [Fact]
+    public void GivenCellSizeCalculator_Returns8BitCells()
+    {
+        var code = @"
+        Calculate the value 256 and test if it's zero
+        If the interpreter errors on overflow this is where it'll happen
+        ++++++++[>++++++++<-]>[<++++>-]
+        +<[>-<
+            Not zero so multiply by 256 again to get 65536
+            [>++++<-]>[<++++++++>-]<[>++++++++<-]
+            +>[>
+                # Print ""32""
+                ++++++++++[>+++++<-]>+.-.[-]<
+            <[-]<->] <[>>
+                # Print ""16""
+                +++++++[>+++++++<-]>.+++++.[-]<
+        <<-]] >[>
+            # Print ""8""
+            ++++++++[>+++++++<-]>.[-]<
+        <-]<
+        # Print "" bit cells\n""
+        +++++++++++[>+++>+++++++++>+++++++++>+<<<<-]>-.>-.+++++++.+++++++++++.<.
+        >>.++.+++++++..<-.>>-
+        Clean up used cells.
+        [[-]<]
+        ";
+        
+        _sut.Interpret(code);
+        
+        _testOutput.Output.Should().BeEquivalentTo("8 bit cells\n");
     }
 }
