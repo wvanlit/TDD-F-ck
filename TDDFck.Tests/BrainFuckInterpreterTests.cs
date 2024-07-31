@@ -154,7 +154,14 @@ public class BrainFuckInterpreterTests
     {
         _sut.Interpret("++++++++++[--]");
         
-        _sut.Memory.First().Should().Be(0);
-        _sut.Memory.Skip(1).ShouldBeEmpty();
+        _sut.Memory.ShouldBeEmpty();
+    }
+    
+    [Fact]
+    public void GivenMultipleJumpOperators_LoopsUntilBothCellsAreZeroAgain()
+    {
+        _sut.Interpret("+++++[-]>+++++[-]");
+        
+        _sut.Memory.ShouldBeEmpty();
     }
 }
