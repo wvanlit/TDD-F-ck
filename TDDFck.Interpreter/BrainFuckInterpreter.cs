@@ -18,9 +18,6 @@ public class BrainFuckInterpreter : IBrainFuckInterpreter
 
     public void Interpret(string code)
     {
-        if (code == "+")
-        {
-            _memory[0] = 1;
-        }
+        _memory[0] = (uint)code.Count(c => c is '+');
     }
 }
